@@ -13,8 +13,15 @@ class Deck:
 
     def draw_card(self) -> Card: 
         crnt_card = None
-        while (crnt_card = random.choice(self.cards)):
-            
+        while True:
+            crnt_card = random.choice(self.cards)
+
+            # if current card is already used, then another random card should be selected
+            if not crnt_card in self.used_cards:
+                self.used_cards.append(crnt_card)
+                break
+
+        return crnt_card
 
 
     def get_full_deck(self) -> tuple:
@@ -76,4 +83,7 @@ cards_to_return.append(deck.get_all_cards()[0])
 cards_to_return.append(deck.get_all_cards()[1])
 cards_to_return.append(deck.get_all_cards()[2])
 cards_to_return.append(deck.get_all_cards()[10])
-deck.print_list_cards(cards_to_return)
+#deck.print_list_cards(cards_to_return)
+print(deck.draw_card())
+print(deck.draw_card())
+print(deck.draw_card())

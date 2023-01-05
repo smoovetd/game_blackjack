@@ -37,9 +37,3 @@ class Card:
 
         return draw_card
 
-
-
-#card = Card('Q', 'hearts')
-#print(str(card))
-#print(card.sign)
-print(1120/2)
