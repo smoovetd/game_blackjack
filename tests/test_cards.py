@@ -3,14 +3,15 @@ import sys
 import os 
 
 # inserting parent directory
-print(os.getcwd())
 sys.path.insert(0, os.getcwd())
 
 from card import Card
 
 
-@pytest.fixture(scope="class")
 def test_to_str_card():
-    card = Card('A', 'spades')
-    assert str(card) == '___\n|A  |\n| \u2660 |\n|__A|aaa'
+    crnt_char = 'A'
+    crnt_sign = 'spades'
+    card =  Card(crnt_char, crnt_sign)
+
+    assert str(card).rstrip() == ' ___\n|A  |\n| \u2660 |\n|__A|'
 
