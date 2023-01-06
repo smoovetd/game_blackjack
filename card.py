@@ -37,3 +37,9 @@ class Card:
 
         return draw_card
 
+
+    def __eq__(self, new_card: object) -> bool:
+        if self.sign == new_card.sign and self.char == new_card.char:
+            return True 
+        
+        return False

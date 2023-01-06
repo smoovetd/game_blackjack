@@ -7,21 +7,55 @@ class Deck:
         self.cards = self.get_full_deck()
 
         self.used_cards = list()
+        self.unused_cards = list(self.get_full_deck())
 
     def get_all_cards(self) -> tuple:
         return self.cards
 
     def draw_card(self) -> Card: 
         crnt_card = None
+        MAX_TRIES = 1000
+        
+        if len(self.used_cards) == len(self.cards) or len(self.unused_cards) == 0:
+            print('ERROR draw_card -> there are no more unused cards!')
+            return None
+
+        count = 0
         while True:
             crnt_card = random.choice(self.cards)
 
             # if current card is already used, then another random card should be selected
             if not crnt_card in self.used_cards:
+                print(self.unused_cards)
+                print(f'DEBUG {crnt_card}')
                 self.used_cards.append(crnt_card)
+                print(crnt_card in self.unused_cards)
+                self.unused_cards.pop(self.unused_cards.index(crnt_card))
                 break
 
+            count += 1
+            if count >= MAX_TRIES:
+                print(f'No free card was found in {MAX_TRIES} tries!')
+                return None 
+
         return crnt_card
+
+
+    def draw_cards(self, number_of_cards: int) -> list:
+        '''Returns list with size number_of_cards from the deck. If there are no such cards - draw error'''
+        if (number_of_cards > len(self.unused_cards)):
+            print(f'There are less than {number_of_cards} available')
+            return None
+        elif number_of_cards < 1:
+            print('You need to draw at least one card')
+            return None
+        
+
+        result = list()
+        for crnt_card in range(0, number_of_cards):
+            result.append(self.draw_card())
+
+        return result 
 
 
     def get_full_deck(self) -> tuple:
@@ -84,6 +118,4 @@ cards_to_return.append(deck.get_all_cards()[1])
 cards_to_return.append(deck.get_all_cards()[2])
 cards_to_return.append(deck.get_all_cards()[10])
 #deck.print_list_cards(cards_to_return)
-print(deck.draw_card())
-print(deck.draw_card())
-print(deck.draw_card())
+print(deck.print_list_cards(deck.draw_cards(5)))
