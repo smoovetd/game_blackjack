@@ -20,4 +20,6 @@ def test_draw_card():
     card = deck.draw_card()
 
     assert len(deck.used_cards) == 1, f'Incorrect length of used cards after draw! Expected 1, Actual: {len(deck.used_cards)}'
-    assert len(deck.unused_cards) == deck_length - 1, f'Incorrect length of unused cards after draw! Expected {deck_length - 1}, actual {len(deck.unused_cards)}' 
+    assert len(deck.unused_cards) == deck_length - 1, f'Incorrect length of unused cards after draw! Expected {deck_length - 1}, actual {len(deck.unused_cards)}'
+    assert deck.used_cards[0] == card, f'Expected card to be {card}, Actual: {deck.used_cards[0]}' 
+    assert (card in deck.unused_cards) == False,  f'Error - card is found in unused_cards list!'

@@ -1,4 +1,3 @@
-from typing import final
 from card import Card
 import random
 
@@ -75,12 +74,14 @@ class Deck:
 
         return all_cards
 
+
     def print_all_cards(self) -> None:
         all_cards = ''
         for card in self.cards:
             all_cards += str(card) + '\n'
 
         print(all_cards)
+
 
     def print_list_cards(self, cards: list, cards_per_row:int = 4) -> None:
         cards_to_print = ''
@@ -108,14 +109,3 @@ class Deck:
             
             
         print(final_str)
-
-
-deck = Deck()
-#deck.print_all_cards()
-cards_to_return = list()
-cards_to_return.append(deck.get_all_cards()[0])
-cards_to_return.append(deck.get_all_cards()[1])
-cards_to_return.append(deck.get_all_cards()[2])
-cards_to_return.append(deck.get_all_cards()[10])
-#deck.print_list_cards(cards_to_return)
-print(deck.print_list_cards(deck.draw_cards(5)))
