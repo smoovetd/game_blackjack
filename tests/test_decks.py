@@ -15,6 +15,13 @@ def test_deck_cards_len():
     assert len(deck.cards) == deck_length, f'Incorrect deck length! Expected {deck_length}, Actual: {len(deck.cards)}'
 
 
+def test_get_all_cards():
+    deck_length = 52
+    deck = Deck()
+    all_cards = deck.get_all_cards()
+
+    assert len(all_cards) == deck_length, f'Get all cards did not returned {deck_length} number of cards!'
+
 def test_draw_card():
     deck_length = 52
     deck = Deck()
