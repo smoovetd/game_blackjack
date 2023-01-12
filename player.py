@@ -22,3 +22,26 @@ class Player:
 
     def clear_cards():
         self.cards = []
+
+class Computer(Player):
+    def __init__(self):
+        name = 'Computer'
+        player_type = 'computer'
+        super().__init__(player_type, name)
+
+
+class Person(Player):
+    def __init__(self, name):
+        name = name
+        player_type = 'person'
+        super().__init__(player_type, name)
+
+
+pc = Computer()
+pl = Person('Me')
+
+pc.print_name()
+pc.print_player_type()
+
+pl.print_name()
+pl.print_player_type()
