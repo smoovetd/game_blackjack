@@ -20,8 +20,14 @@ class Player:
         else:
             self.cards.append(card)
 
-    def clear_cards():
+    def clear_cards(self):
         self.cards = []
+
+    def get_cards(self):
+        return self.cards
+
+    def __str__(self):
+        return(f'Type: {self.player_type}; name: {self.name}, cards: {self.get_cards()}')
 
 class Computer(Player):
     def __init__(self):
