@@ -14,7 +14,7 @@ class Player:
     def print_player_type(self):
         print(self.player_type)
 
-    def add_card(card: Card):
+    def add_card(self, card: Card):
         if type(card) != Card:
             print('ERROR card has incorrect type!')
         else:

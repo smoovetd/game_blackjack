@@ -30,11 +30,62 @@ def init_player(player_name, max_fail_attempts=5):
     return player
 
 
+def get_cards_strength(card: Card, is_first=False):
+    strength = 0
+
+    if card.get_char().isnumeric() == True:
+        strength = int(card.get_char())
+    elif card.get_char() == 'A' and is_first == True:
+        strength = 11
+    elif card.get_char() == 'A' and is_first == False:
+        strength = 1
+    elif card.get_char() in ['K', 'Q', 'J']:
+        strength = 10
+    else:
+        print(f'ERROR get_cards_strength() -> incorrect character returned: {card.get_char()}')
+        strength = -1
+
+    return strength
+    
+
+def get_players_card_stregth(cards: list):
+    total_strength = 0
+    is_first = True
+    for card in cards:
+        if not (card.__class__ == Card):
+            print(f'ERROR: incorrect card type:  {type(card)}, expected {Card.__class__}')
+            abort_the_game()
+        
+        total_strength += get_cards_strength(card, is_first= is_first)
+        is_first = False 
+
+    return total_strength
+
+
+def start_game(player1: Player, player2: Player):
+    print('Game is started!')
+    deck = Deck()
+
+    player1.add_card(deck.draw_card())
+    player1.add_card(deck.draw_card())
+
+    player2.add_card(deck.draw_card())
+    player2.add_card(deck.draw_card())
+
+    print('Player 1 hand: ')
+    deck.print_list_cards(player1.cards)
+    print(f'Player 1 strength: {get_players_card_stregth(player1.cards)}')
+
+    print('Player 2 hand: ')
+    deck.print_list_cards(player2.cards)
+    print(f'Player 2 strength: {get_players_card_stregth(player2.cards)}')
+
 
 def run(player1: Player, player2: Player):
     print(f'Added player: {player1}')
     print(f'Added player: {player2}')
-
+    
+    start_game(player1, player2)
 
 
 if __name__ == '__main__':
